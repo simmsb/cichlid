@@ -61,7 +61,7 @@ impl HSV {
         let (hue, sat, val) = (self.h, self.s, self.v);
 
         let mut rgb: ColorRGB = match (sat, val) {
-            (0, _) => return mk_rgb!(255, 255, 255),
+            (0, _) => return mk_rgb!(0, 0, 0),
             (_, 0) => return mk_rgb!(0, 0, 0),
             _ => hue_to_full_rgb(hue),
         };
@@ -476,6 +476,16 @@ impl From<[u8; 3]> for HSV {
 #[cfg(test)]
 mod test {
     use crate::{ColorRGB, HSV};
+
+    #[test]
+    fn hsv2rgb_spectrum_zero() {
+        assert_eq!(HSV::new(0, 0, 0).to_rgb_spectrum(), ColorRGB::new(0, 0, 0));
+    }
+
+    #[test]
+    fn hsv2rgb_rainbow_zero() {
+        assert_eq!(HSV::new(0, 0, 0).to_rgb_rainbow(), ColorRGB::new(0, 0, 0));
+    }
 
     #[test]
     fn hsv2rgb_rainbow_6h() {

@@ -83,7 +83,7 @@ impl HSV {
     /// Converts a `HSV` to a `ColorRGB` using a traditional Mathematical rainbow.
     pub fn to_rgb_spectrum(self) -> ColorRGB {
         let mut hsv = self;
-        hsv.v = scale_u8(hsv.v, 191);
+        hsv.h = scale_u8(hsv.h, 191);
         unsafe { hsv.to_rgb_raw() }
     }
 
@@ -91,10 +91,10 @@ impl HSV {
     ///
     /// # Safety
     ///
-    /// Value can only be up to 191, or else undefined behavior will follow.
+    /// Hue can only be up to 191, or else undefined behavior will follow.
     pub unsafe fn to_rgb_raw(self) -> ColorRGB {
         // Taken directly from FastLED, credit goes to them for this
-        debug_assert!(self.v <= 191);
+        debug_assert!(self.h <= 191);
         let value: u8 = self.v;
         let saturation: u8 = self.s;
         // The brightness floor is minimum number that all of

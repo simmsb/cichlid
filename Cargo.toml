@@ -20,6 +20,7 @@ test = true
 doctest = true
 crate-type = ["rlib"]
 
+
 #[dev-dependencies]
 #criterion = "0.2.11"
 # cargo objdump --target thumbv7em-none-eabihf --features=no-std --lib --release -- -disassemble-all > diss.txt
@@ -55,6 +56,9 @@ debug-assertions = false
 codegen-units = 1
 incremental = false
 overflow-checks = false
+
+[dependencies]
+serde = { version = "1.0.164", features = ["derive"], optional = true, default-features = false }
 
 
 #[[bench]]

@@ -24,6 +24,7 @@ fn hue_to_full_rgb(hue: u8) -> ColorRGB {
 /// This structure is useful for a more human-centered approach to thinking
 /// about color.
 #[derive(Copy, Clone, Default, Eq, PartialEq, Debug, Hash)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct HSV {
     pub h: u8,
     pub s: u8,

@@ -35,6 +35,7 @@ use crate::HSV;
 /// Object representing a color through the standard single byte red, green, and blue values.
 #[repr(packed)]
 #[derive(Copy, Clone, Default, Eq, PartialEq, Debug, Hash)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct ColorRGB {
     /// Red Component.
     pub r: u8,
